@@ -6,16 +6,18 @@ from keras.models import load_model
 import matplotlib.pyplot as plt
 import numpy as np
 
+# Charger le modèle
 model = load_model('mnist_cnn_model.keras')
 
-
+# Charger les données MNIST
 (_, _), (test_images, test_labels) = mnist.load_data()
+
+# Prétraitement des images
 test_images = test_images.reshape((10000, 28, 28, 1)).astype('float32') / 255
 test_labels = to_categorical(test_labels)
 
+# Faire des prédictions
 predictions = model.predict(test_images)
-
-
 
 # Afficher les premières 10 images, leurs étiquettes prédites, et les vraies étiquettes
 for i in range(10):
